@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HAL Admin</title>
+  <style>
+    body { font-family: sans-serif; margin: 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    pre { background: #111; color: #ddd; padding: 12px; overflow-x: auto; }
+    .card { border: 1px solid #ccc; padding: 12px; border-radius: 8px; }
+    label { display:block; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>HAL Surface Admin</h1>
+  <p><strong>Current mode:</strong> {{mode}}</p>
+  <p style="color: green;">{{message}}</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Config</h2>
+      <form method="post" action="/config">
+        <label>Mode
+          <select name="mode">
+            {{mode_options}}
+          </select>
+        </label>
+        <label>Aviary URL <input type="text" name="aviary_url" value="{{aviary_url}}" /></label>
+        <label>Record seconds <input type="number" name="record_seconds" value="{{record_seconds}}" /></label>
+        <label>Audio input device <input type="number" name="audio_input_device" value="{{audio_input_device}}" /></label>
+        <label>Audio output device <input type="number" name="audio_output_device" value="{{audio_output_device}}" /></label>
+        <label><input type="checkbox" name="led_enabled" {{led_checked}} /> LED enabled</label>
+        <label><input type="checkbox" name="tft_enabled" {{tft_checked}} /> TFT enabled</label>
+        <button type="submit">Save config</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Actions</h2>
+      <form method="post" action="/restart"><button type="submit">Restart service</button></form>
+      <form method="post" action="/git-pull"><button type="submit">Git pull + restart</button></form>
+      <form method="post" action="/test/audio"><button type="submit">Run audio loopback test</button></form>
+      <form method="post" action="/test/tts"><button type="submit">Speak test phrase</button></form>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Service Status</h2>
+    <pre>{{service_status}}</pre>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Recent Logs (100)</h2>
+      <pre>{{logs}}</pre>
+    </div>
+    <div class="card">
+      <h2>Audio Devices</h2>
+      <pre>{{devices}}</pre>
+    </div>
+  </div>
+</body>
+</html>

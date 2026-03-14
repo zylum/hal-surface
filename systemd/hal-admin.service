@@ -1,0 +1,18 @@
+[Unit]
+Description=HAL Surface Admin Panel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/hal-surface
+ExecStart=/home/pi/hal-surface/.venv/bin/python /home/pi/hal-surface/admin/app.py --host 0.0.0.0 --port 8787
+Restart=on-failure
+RestartSec=2
+Environment=PYTHONUNBUFFERED=1
+Environment=HAL_SURFACE_REPO=/home/pi/hal-surface
+Environment=HAL_SURFACE_CONFIG=/home/pi/hal-surface/config.json
+
+[Install]
+WantedBy=multi-user.target

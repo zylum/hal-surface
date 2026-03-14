@@ -1,0 +1,24 @@
+{
+  "mode": "voice_stub",
+  "aviary_url": "http://192.168.0.x:8000/v1/ingest/message",
+  "workspace_id": "happy_place",
+  "person_id": "marv",
+  "device_id": "hal_pi_01",
+  "tts_engine": "espeak",
+  "tts_test_phrase": "HAL surface tts test successful.",
+  "audio_input_device": 2,
+  "audio_output_device": 0,
+  "record_seconds": 5,
+  "transcription_provider": "stub",
+  "stub_transcript": "Hello from the Pi surface.",
+  "stub_responses": [
+    "I heard you. This is a stub response.",
+    "Voice stub mode is working."
+  ],
+  "request_timeout_seconds": 15,
+  "run_continuous": false,
+  "loop_delay_seconds": 1,
+  "led_enabled": false,
+  "tft_enabled": false,
+  "log_level": "info"
+}

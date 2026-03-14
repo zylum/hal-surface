@@ -1,0 +1,16 @@
+[Unit]
+Description=HAL Surface Runtime
+After=network-online.target sound.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/hal-surface
+ExecStart=/home/pi/hal-surface/.venv/bin/python /home/pi/hal-surface/main.py --config /home/pi/hal-surface/config.json
+Restart=on-failure
+RestartSec=2
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
